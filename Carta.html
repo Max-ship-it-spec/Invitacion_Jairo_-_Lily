@@ -1,0 +1,2364 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Valeria & Jairo - Boda</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --primary:#63252c;
+  --primary-light:#8a3a43;
+  --primary-dark:#4b1c22;
+  --cream:#f6f1e8;
+  --text:#2a1c1e;
+}
+html,body{
+overflow-x:hidden;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Crimson Pro',serif;
+  background:var(--cream);
+  color:var(--text);
+  overflow-x:hidden;
+}
+
+/* ───────── NAVBAR OPTIMIZADO ───────── */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  height:70px; 
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 clamp(20px, 5vw, 60px);
+  background:#ffffff;
+  border-bottom:1px solid rgba(99, 37, 44, 0.2);
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.logo img{ height:100px; }
+
+.nav-links{ display:flex; align-items:center; list-style:none; }
+.nav-links li{ display:flex; align-items:center; }
+
+
+.nav-links li:not(:first-child)::before{
+  content:''; width:1px; height:18px; background:rgba(99, 37, 44, 0.3); margin:0 clamp(15px, 2.5vw, 35px);
+}
+
+.nav-links a{
+  font-size:clamp(16px,1vw,16px);
+  font-weight:700;
+  letter-spacing:0.08em;
+  color:var(--text);
+  text-decoration:none;
+  transition: all .25s ease;
+  display:inline-block; 
+}
+
+.nav-links a:hover{ 
+  color:var(--primary-light); 
+  transform: scale(0.90);
+}
+
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40px; height: 40px;
+  cursor: pointer; gap: 6px;
+}
+
+.menu-toggle span {
+  display: block; width: 26px; height: 2px;
+  background-color: var(--primary);
+  border-radius: 2px; transition: 0.3s;
+}
+
+.menu-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.menu-toggle.open span:nth-child(2) { opacity: 0; }
+.menu-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+/* ───────── HERO ───────── */
+.hero{
+  min-height:100vh;
+  padding-top:100px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:white;
+  overflow:hidden;
+}
+
+.hero-center{
+  max-width:clamp(280px, 90%, 520px);
+  padding:20px;
+  z-index:10;
+  position:relative;
+}
+
+.subtitle{
+  font-family:'Caveat',cursive;
+  font-size:clamp(24px, 4vw, 34px);
+  color:var(--primary-light);
+  margin-bottom:10px;
+}
+
+.names img{
+    max-width: 450px;
+    opacity: 0;
+    transform: translateY(-250px);
+    animation: tituloCaida 2.0s ease-out forwards;
+}
+
+@keyframes tituloCaida{
+    0%{
+        transform: translateY(-120px);
+        opacity: 0;
+    }
+
+    40%{
+        opacity: 0.3;
+    }
+
+    70%{
+        opacity: 0.7;
+    }
+
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.description{
+  font-family:'Caveat',cursive;
+  font-size:clamp(20px, 2.8vw, 28px);
+  color:var(--primary-light);
+  margin:25px 0 10px;
+}
+
+.deco-cheers{
+  position: relative;
+   width: clamp(200px, 35vw, 250px);
+  margin: 10px auto;
+  z-index: 2;
+}
+@media (max-width:768px){
+  .description{
+    font-size: 28px; /* antes estaba más pequeño */
+    
+  }
+  .subtitle{
+    font-size: 28px; /* antes estaba más pequeño */
+    
+  }
+  .names img{
+    max-width: 350px; /* antes 280px */
+    width: 95%;
+  }
+}
+/* ───────── POLAROIDS ───────── */
+.polaroid{
+  position:absolute;
+  background:white;
+  padding:10px 10px 40px;
+  border:1px solid #e0d5c5;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+  transition:.4s;
+  z-index:3;
+}
+.polaroid:hover{
+  transform:scale(1.10) rotate(0deg);
+}
+.polaroid img{ width:100%; height:100%; object-fit:cover; display:block; }
+.pol-1,.pol-2,.pol-3,.pol-4{ width:clamp(140px, 16vw, 190px); height:clamp(170px, 20vw, 230px); }
+
+.pol-1{left:4%; top:20%; transform:rotate(-8deg);}
+.pol-2{left:7%; bottom:10%; transform:rotate(5deg);}
+.pol-3{right:4%; top:18%; transform:rotate(6deg);}
+.pol-4{right:6%; bottom:10%; transform:rotate(-5deg);}
+
+/* Decoraciones */
+.deco-img{ position:absolute; z-index:1; pointer-events:none; opacity: 0.8; }
+.deco-heart-1{top:20%; left:20%; width:60px;}
+.deco-heart-2{top:15%; right:25%; width:50px;}
+.deco-heart-triple{bottom:12%; right:18%; width:80px;}
+.swirl-tl{top:8%; left:-20px; width:150px; transform:rotate(15deg);}
+.swirl-br{bottom:8%; right:-20px; width:150px; transform:rotate(-15deg);}
+
+
+
+/* ANIMACION EN PC */
+@media (min-width: 768px){
+
+.pol-1{
+  animation: entrarIzq 2s ease-out forwards;
+}
+
+.pol-2{
+  animation: entrarIzq 2.3s ease-out forwards;
+}
+
+.pol-3{
+  animation: entrarDer 2s ease-out forwards;
+}
+
+.pol-4{
+  animation: entrarDer 2.3s ease-out forwards;
+}
+
+
+}
+
+/* Desde izquierda */
+@keyframes entrarIzq{
+  0%{
+    transform: translateX(-400px) rotate(-20deg);
+    opacity:0;
+  }
+
+  100%{
+    transform: translateX(0) rotate(var(--rot));
+    opacity:1;
+  }
+}
+
+
+
+
+/* Desde derecha */
+@keyframes entrarDer{
+  0%{
+    transform: translateX(400px) rotate(20deg);
+    opacity:0;
+  }
+
+  100%{
+    transform: translateX(0) rotate(var(--rot));
+    opacity:1;
+  }
+}
+
+@media (max-width:768px){
+
+.pol-1{
+animation: entrarIzqCell 1.5s ease-out forwards;
+}
+
+.pol-2{
+animation: entrarIzqCell 1.8s ease-out forwards;
+}
+
+.pol-3{
+animation: entrarDerCell 1.5s ease-out forwards;
+}
+
+.pol-4{
+animation: entrarDerCell 1.8s ease-out forwards;
+}
+
+}
+
+@keyframes entrarIzqCell{
+
+0%{
+transform: translateX(-300px) rotate(-10deg);
+opacity:0;
+}
+
+100%{
+transform: translateX(0) rotate(-3deg);
+opacity:1;
+}
+
+}
+
+@keyframes entrarDerCell{
+
+0%{
+transform: translateX(300px) rotate(10deg);
+opacity:0;
+}
+
+100%{
+transform: translateX(0) rotate(3deg);
+opacity:1;
+}
+
+}
+
+
+
+
+
+/* ───────── RESPONSIVE (CELULAR) ───────── */
+@media(max-width:768px){
+  .menu-toggle { display: flex; }
+
+  /* Menú desplegable con más espacio interno */
+  .nav-links{
+    display: none;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: white;
+    flex-direction: column;
+
+    padding: 10px 0; /* antes 30px */
+    border-bottom: 2px solid var(--primary-light);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+  }
+
+
+  .nav-links.active { display: flex; }
+
+  .nav-links li { 
+    width: 100%; 
+    justify-content: center; 
+    padding: 12px 0; /* Espacio entre cada link */
+  }
+  
+  .nav-links li:not(:first-child)::before { display: none; }
+
+  .hero { 
+    flex-direction: column; 
+    padding: 100px 20px 60px; 
+    height: auto; 
+    justify-content: flex-start;
+  }
+
+  .hero-center { order: 2; width: 100%; }
+
+  /* Fotos 2 arriba y 2 abajo */
+  .polaroid {
+    position: relative !important;
+    left: auto !important; right: auto !important;
+    top: auto !important; bottom: auto !important;
+    width: 44% !important; /* Más pequeñas para que quepan 2 */
+    margin: 8px 2%;
+    padding: 6px 6px 20px;
+    display: inline-block;
+  }
+
+  .pol-group-top { order: 1; display: flex; justify-content: center; width: 100%; margin-bottom: 15px; }
+  .pol-group-bottom { order: 3; display: flex; justify-content: center; width: 100%; margin-top: 15px; }
+
+  .pol-1, .pol-3 { transform: rotate(-3deg) !important; }
+  .pol-2, .pol-4 { transform: rotate(3deg) !important; }
+  
+
+  .names img { max-width: 280px; }
+  .deco-heart-1, .deco-heart-2, .swirl-tl, .swirl-br { display:none; }
+}
+
+
+/* ───────── CINTA INFINITA 3 IMÁGENES ───────── */
+
+.cinta-galeria{
+  width:100%;
+  height:650px;
+  overflow:hidden;
+  background:black;
+  position:relative;
+}
+.cinta{
+  display:flex;
+  width:calc(33.3333vw * 12); /* 12 imágenes (6 + 6) */
+  height:100%;
+  animation:mover 30s linear infinite;
+}
+
+.cinta img{
+  width:33.3333vw;
+  height:100%;
+  object-fit:cover;
+  flex-shrink:0;
+}
+
+@keyframes mover{
+  from{
+    transform:translateX(0);
+  }
+  to{
+    transform:translateX(-50%);
+  }
+}
+
+/* LOGO */
+.logo-centro{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%, -50%);
+  z-index:10;
+  pointer-events:none;
+}
+
+.logo-centro img{
+  width:320px;
+}
+
+/* 📱 CELULAR */
+@media (max-width:768px){
+
+  .cinta-galeria{
+    height:480px;
+  }
+
+.cinta{
+    width:calc(100vw * 12);
+    animation:mover 22s linear infinite;
+  }
+
+  .cinta img{
+    width:100vw;
+  }
+
+  .logo-centro img{
+    width:200px;
+  }
+}
+
+@media (max-width:768px){
+
+  .seccion-floral{
+    padding:80px 20px;
+  }
+
+  .titulo-rojo{
+    font-size:28px;
+  }
+
+  .img-top{
+    width:180px;
+  }
+
+  .img-pequena{
+    width:100px;
+  }
+
+  .img-grande{
+    width:90%;
+  }
+
+}
+
+
+
+
+
+/* --- CONTENEDOR ÚNICO CON FONDO --- */
+.seccion-floral {
+  width: 100%;
+  padding: 100px 20px;
+  /* Fondo_Compu */
+  background-image: url(Imagenes/Decoracion/Fondo_flores5.png);
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: var(--cream); 
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+  justify-content: center;
+}
+
+.contenido-floral {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 60px; /* Espaciado entre elementos de la invitación */
+  width: 100%;
+}
+
+.titulo-rojo {
+  color: #8B0000;
+  font-size: 24px;
+  font-weight: 500;
+  max-width: 500px;
+  margin: 0;
+  text-transform: uppercase;
+   text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.img-top { width: 70vw; max-width: 450px; }
+.img-grande { width: 100vw; max-width: 600px; }
+.img-pequena { width: 50px; height: auto; }
+
+
+.aparecer-scroll{
+  opacity:0;
+  transform: translateY(40px);
+  transition: all 1s ease;
+}
+
+.aparecer-scroll.visible{
+  opacity:1;
+  transform: translateY(0);
+}
+
+/* --- CONTENEDOR DE MAPAS (Dentro de la misma sección) --- */
+.contenedor-mapas {
+  display: flex;
+  flex-direction: row; 
+  justify-content: center;
+  align-items: stretch; 
+  gap: 100px; 
+  max-width: 1000px;
+  width: 100%;
+  margin-top: 80px; 
+}
+
+.bloque-evento {
+  flex: 1; 
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  text-align: center;
+}
+
+.img-dibujo {
+  height: 200px; 
+  width: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
+}
+
+.subtitulo-evento {
+  color: #8B0000;
+  letter-spacing: 3px;
+  font-size: 20px;
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+
+.nombre-lugar {
+  font-family: 'Crimson Pro', serif;
+  font-style: italic;
+  font-size: 20px;
+  margin: 5px 0;
+}
+
+.direccion-texto {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* BOTONES ALINEADOS Y EN NEGRITA */
+.btn-mapa {
+  margin-top: auto; 
+  padding: 10px 25px;
+  margin-bottom: 120px;
+  background-color: #e2ddd3;
+  color: #5a5448;
+  text-decoration: none;
+  border-radius: 20px;
+  font-size: 17px;
+  font-weight: bold;
+  transition: 0.3s ease;
+}
+
+.btn-mapa:hover {
+  background-color: #d4ccb6;
+}
+
+
+
+
+
+/* estado inicial */
+.scroll-izq, .scroll-der{
+  opacity:0;
+  transition: all 1s ease;
+}
+
+/* ceremonia */
+.scroll-izq{
+  transform: translateX(-120px);
+}
+
+/* recepcion */
+.scroll-der{
+  transform: translateX(120px);
+}
+
+/* cuando aparecen */
+.scroll-izq.visible,
+.scroll-der.visible{
+  opacity:1;
+  transform: translateX(0);
+}
+
+
+
+@media (max-width:768px){
+
+  .seccion-floral{
+    background-image: url(Imagenes/Decoracion/Fondo_flores3.png);
+    background-size: cover;
+    padding:60px 15px 90px 15px; /* más espacio abajo */
+  }
+.titulo-rojo {
+  
+  max-width: 300px;
+  
+}
+  .contenedor-mapas{
+    flex-direction:column;
+    align-items:center;
+    gap:70px;
+    margin-top:50px;
+  }
+
+  
+  .img-dibujo{
+    height:190px;
+  }
+
+  .img-recepcion{
+    height:130px;
+    margin-bottom:15px;
+  }
+
+  
+  .subtitulo-evento{
+    font-size:24px;
+    margin:12px 0;
+  }
+
+  .nombre-lugar{
+    font-size:22px;
+     color:#841c1c;
+     
+  }
+
+.direccion-texto{
+  font-size:18px;
+  color:#841c1c;
+  margin-bottom:20px;
+  max-width:300px;  
+  text-align:center;
+
+}
+
+
+  .btn-mapa{
+    padding:14px 35px;
+    font-size:19px;
+    border-radius:30px;
+    margin-bottom:40px;
+  }
+
+}
+
+
+
+
+
+/* ============================= */
+/* CONTENEDOR CUENTA REGRESIVA */
+/* ============================= */
+
+.contenedor-regresiva-tres-barras{
+    position: relative;
+    width: 100%;
+    margin-top: 200px; /* antes 1300px */
+}
+
+/* VIDEO CENTRAL */
+.barra-video-central{
+    height: 420px;
+    position: relative;
+    overflow: visible;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* VIDEO */
+.video-regresiva{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* BARRA ROJA */
+.barra-roja-bottom{
+    background:#681515;
+    padding-top:120px;
+    padding-bottom:200px;
+}
+/* PANEL BLANCO */
+.capa-panel-blanco{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+/* MARCO */
+.img-marco-curvo{
+    width: 1000px;
+    max-width: 120vw;
+}
+
+/* FLORES */
+.img-flores-deco{
+    width: 150px;
+    height: auto;
+    display: block;
+    margin: 15px auto 0 auto;
+}
+
+/* CONTENIDO CENTRADO */
+.contenido-interno-regresiva{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.txt-script{
+    display:block;
+    margin:0 auto;
+    width:300px;
+}
+
+/* RELOJ */
+.reloj-dinamico{
+    display:flex;
+    gap:40px;
+    justify-content:center;
+    margin-top:20px;
+}
+
+.bloque{
+    text-align:center;
+}
+
+.num{
+    font-size:70px;
+    color:#6d1c1c;
+    font-family:serif;
+}
+
+.lab{
+    font-size:25px;
+    display:block;
+}
+
+@media (max-width:768px){
+
+    .contenedor-regresiva-tres-barras{
+        margin-top:120px;
+    }
+
+    .barra-video-central{
+        height:220px;
+        position: relative;
+    }
+.barra-roja-bottom{
+    background:#681515;
+    padding-top:120px;
+    padding-bottom:280px;
+}
+    /* PANEL MÁS GRANDE Y QUE SOBRESALGA DEL VIDEO */
+   .capa-panel-blanco{
+    position:absolute;
+   
+    left:50%;
+    transform:translate(-50%,-50%);
+    z-index:10;
+    width:100%;
+    display:flex;
+    justify-content:center;
+}
+
+  .img-marco-curvo{
+    width:100%;
+}
+    .contenido-interno-regresiva{
+        width:85%;
+        text-align:center;
+    }
+
+    .txt-script{
+        width:165px;
+        margin-bottom:6px;
+    }
+
+    .reloj-dinamico{
+        gap:8px;
+        margin-top:5px;
+    }
+
+    .num{
+        font-size:29px;
+    }
+
+    .lab{
+        font-size:15px;
+    }
+
+    .img-flores-deco{
+        width:75px;
+        margin-top:6px;
+    }
+
+    
+}
+
+
+
+
+
+
+
+
+
+
+.contenedor-historia{
+    width:1200px;
+    max-width:90%;
+    margin:auto;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:80px;
+}
+
+/* TEXTO MÁS A LA IZQUIERDA */
+.lado-texto{
+    color:white;
+    max-width:520px;
+    margin-right:auto;
+}
+
+/* FOTO MÁS A LA DERECHA */
+.lado-foto{
+     margin: 0 auto;
+    display: flex;
+    justify-content: center;
+   
+    margin-top: 30px;
+}
+
+
+.lado-foto img{
+    width: 80%;      /* opcional: más pequeña */
+   
+}
+.titulo-historia{
+    width:280px;
+    margin-bottom:30px;
+}
+
+.texto-historia{
+    font-size:18px;
+    line-height:1.8;
+    text-align:justify;
+}
+
+.foto-entrada-izquierda{
+  opacity: 0;
+  transform: translateX(-150px) rotate(-8deg) scale(0.9);
+  transition: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.foto-entrada-izquierda.visible{
+  opacity: 1;
+  transform: translateX(0) rotate(0) scale(1);
+}
+@media (max-width:768px){
+  .foto-entrada-izquierda{
+    transform: translateX(-80px) rotate(-4deg) scale(0.95);
+  }
+}
+
+@media (max-width:768px){
+
+.contenedor-historia{
+    flex-direction:column;
+    text-align:left;
+    gap:40px;
+}
+
+.lado-foto{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.lado-foto img{
+    width: 93%;      /* opcional: más pequeña */
+    display: block;
+    margin: 0 auto;
+    margin-left: 20px;
+}
+
+
+.lado-texto{
+    max-width:90%;
+    margin:0 auto;
+}
+
+/* TEXTO JUSTIFICADO EN CELULAR */
+.texto-historia{
+    text-align:justify;
+    font-size:18px;
+    line-height:1.4;
+}
+
+.titulo-historia{
+    width:240px;
+}
+
+}
+
+
+
+.contenedor-opciones-boda{
+    display:flex;
+    justify-content:center;
+    gap:0; /* sin espacio */
+    flex-wrap:wrap;
+    padding:120px 0;
+}
+
+.card-boda{
+    position:relative;
+    width:380px;
+    margin:0;
+}
+.icono-ropa{
+width:110px;
+margin-bottom:20px;
+}
+.marco-card{
+    width:100%;
+    display:block;
+}
+
+.contenido-card{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+
+    text-align:center;
+    padding:20px;
+
+    justify-content:center;
+
+    padding-top:0px; /* baja el contenido debajo del icono */
+    color:white;
+}
+
+.contenido-card h3{
+    font-size:26px;
+    letter-spacing:3px;
+    margin-bottom:20px;
+   
+}
+
+.contenido-card p{
+    font-size:20px;
+    line-height:1.6;
+    margin-bottom:20px;
+    max-width:280px;
+}
+
+.boton-card{
+    background:#e8dcc5;
+    padding:10px 22px;
+    border-radius:30px;
+    text-decoration:none;
+    color:#6a1c1c;
+    font-size:20px;
+}
+
+.icono-card-Traje{
+    width:120px;
+    margin-bottom:25px;
+}
+.icono-card-Play{
+    width:180px;
+    margin-bottom:25px;
+}
+.card-boda{
+    width:350px;
+}
+.icono-card-Album{
+    width:190px;
+    margin-bottom:25px;
+}
+
+.icono-container{
+    height:140px;   /* misma altura para todos */
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin-bottom:20px;
+}
+
+.card-boda{
+  opacity: 0;
+  transform: translateY(80px) scale(0.95);
+  transition: all 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.card-boda.visible{
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* delay elegante */
+.card-boda:nth-child(1){ transition-delay: 0.2s; }
+.card-boda:nth-child(2){ transition-delay: 0.4s; }
+.card-boda:nth-child(3){ transition-delay: 0.6s; }
+
+.icono-container img{
+  animation: moverIcono 0.6s ease-in-out 4 alternate;
+}
+
+@keyframes moverIcono{
+  0%{ transform: translateX(0); }
+  100%{ transform: translateX(12px); }
+}
+
+/* ICONO tipo campana */
+.icono-container.animar .icono-card-Traje,
+.icono-container.animar .icono-card-Play,
+.icono-container.animar .icono-card-Album {
+  animation: campana 1.2s ease-in-out 2;
+  transform-origin: top center; /* 🔥 clave para efecto colgado */
+}
+
+/* Animación tipo péndulo */
+@keyframes campana {
+  0%   { transform: rotate(0deg); }
+  20%  { transform: rotate(12deg); }
+  40%  { transform: rotate(-10deg); }
+  60%  { transform: rotate(6deg); }
+  80%  { transform: rotate(-4deg); }
+  100% { transform: rotate(0deg); }
+}
+
+
+
+
+.seccion-cronograma{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+  
+    gap:20px; /* espacio entre elementos */
+}
+
+/* decoracion superior */
+.Imagen-decoracion{
+    width:100%;
+    max-width:300px;
+  
+}
+
+/* titulo */
+.Imagen-Titulo{
+  padding-top: 30px;
+    width:100%;
+    max-width:320px;
+    padding-bottom: 20px;
+}
+
+/* imagen desktop */
+.cronograma-desktop{
+    width:100%;
+    max-width:900px;
+    padding-bottom: 50px;
+}
+
+/* imagen mobile */
+.cronograma-mobile{
+    width:100%;
+    max-width:440px;
+    
+}
+
+/* OCULTAR EN CELULAR */
+.cronograma-mobile{
+    display:none;
+}
+
+/* CUANDO SEA CELULAR */
+@media (max-width:768px){
+
+.cronograma-desktop{
+    display:none;
+}
+
+.cronograma-mobile{
+    display:block;
+    margin:auto;
+}
+
+.Imagen-decoracion{
+    max-width:300px;
+}
+
+.Imagen-Titulo{
+    max-width:230px;
+}
+
+
+}
+
+
+
+
+
+
+
+.polar-card img {
+  width: 100%;
+  display: block;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+.galeria-polar {
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  padding: 60px 0;
+
+ margin-top: -220px;   /* sube más hasta pegarse */
+  margin-bottom: -140px;
+  padding-top: 0;       /* quita aire arriba */
+  position: relative;
+  z-index: 20; /* ENCIMA de todo */
+}
+
+.polar-overflow {
+  overflow: hidden;
+  width: 100%;
+}
+
+.polar-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+/* TARJETAS */
+.polar-card {
+  flex-shrink: 0;
+  width: clamp(180px, 22vw, 280px);
+  background: #fff;
+  padding: 20px 10px 28px 10px;
+  box-shadow: 2px 3px 10px rgba(0,0,0,0.22);
+  margin-right: 60px; /* en vez de gap */
+}
+
+.polar-card img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+}
+
+/* ROTACIÓN */
+.polar-card:nth-child(odd)  { transform: rotate(-4deg); }
+.polar-card:nth-child(even) { transform: rotate(4deg); }
+
+
+
+
+
+
+
+.seccion-floral2 {
+  width: 100%;
+  padding: 200px 20px 100px 20px;
+  background-image: url(Imagenes/Decoracion/Fondo_flores3.png);
+  background-position: top center;
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-color: var(--cream);
+
+  position: relative;
+  z-index: 1;
+}
+/* CONTENEDOR */
+.contenido-floral{
+  max-width: 900px;
+  margin: auto;
+  text-align: left;
+}
+
+/* TITULO */
+.item-info{
+  width: 70%;
+   margin-bottom: -45px;   
+ 
+}
+
+.titulo-info img{
+  width: 350px;
+}
+
+
+/* TITULO LINEA */
+.titulo-item{
+  display: flex;
+   text-align: left;
+  gap: 12px;
+  cursor: pointer;
+ border-bottom: 1px solid #681515;
+   padding: 18px 0;   /* antes 18px */
+
+  color: #681515;
+  font-size: 18px;
+  letter-spacing: 3px;
+}
+
+/* ICONO */
+.icono{
+  width: 18px;
+  margin-left: 5px;
+}
+
+/* TEXTO */
+.titulo-item span{
+  flex: 1;
+}
+
+
+
+@media (max-width:768px){
+
+  /* 🌸 SECCIÓN FONDO */
+  .seccion-floral2{
+    width: 100%;
+    padding: 140px 15px 80px 15px;
+
+    background-image: url(Imagenes/Decoracion/Fondo_flores3.png);
+    background-size: cover;        /* 🔥 clave */
+    background-position: top center;
+    background-repeat: no-repeat;
+  }
+
+  /* CONTENEDOR */
+  .contenido-floral{
+    max-width: 100%;
+    margin: auto;
+    padding: 0 10px;
+  
+  }
+
+  /* TITULO IMAGEN */
+  .titulo-info{
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .titulo-info img{
+    width: 230px;
+  }
+
+  /* ITEMS */
+  .item-info{
+    width: 100%;
+    margin-bottom: -45px;   
+  }
+
+  /* TITULO (LINEA + TEXTO) */
+  .titulo-item{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 0;
+    border-bottom: 1px solid #681515;
+
+    font-size: 14px;
+    letter-spacing: 2px;
+    color: #681515;
+
+    cursor: pointer;
+  }
+
+  /* ICONO */
+  .icono{
+    width: 14px;
+    margin-left: 2px;
+  }
+
+  /* TEXTO */
+  .titulo-item span{
+    flex: 1;
+  }
+
+  
+
+
+}
+
+/* CONTENIDO OCULTO */
+  .contenido-item{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000000;
+
+    padding-left: 28px;
+  }
+
+  /* CUANDO SE ABRE */
+  .item-info.activo .contenido-item{
+    max-height: 300px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+@media (max-width:768px){
+  .item-info.activo .contenido-item{
+    max-height: 300px;
+  }
+
+  /* CONTENIDO OCULTO */
+  .contenido-item{
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.4s ease;
+
+    font-size: 14px;
+    line-height: 1.5;
+    color: #000000;
+
+    padding-left: 0px;
+
+    text-align: justify; /* 👈 AQUI */
+  }
+}
+
+
+
+
+.confirmacion-box {
+  margin-top: 60px;
+  background: #dad3c2;
+  padding: 90px;
+  border-radius: 20px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+/* TITULO */
+.titulo-confirmacion {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.titulo-confirmacion img {
+  max-width: 320px;
+  width: 100%;
+}
+
+/* FORM */
+.form-confirmacion {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-confirmacion label {
+  font-size: 17px;
+  color: #490707;
+  margin-left: 5px;
+}
+input::placeholder{
+  color: #804f4f;           
+  
+}
+textarea::placeholder{
+  color: #804f4f;           
+  
+}
+/* INPUTS */
+.form-confirmacion input,
+.form-confirmacion select,
+.form-confirmacion textarea {
+  width: 100%;
+  padding: 16px;
+  border-radius: 25px;
+  border: none;
+  background: #e5dcc8;
+  outline: none;
+  font-size: 14px;
+   color: #795a5a; 
+
+}
+
+/* TEXTAREA */
+.form-confirmacion textarea {
+  min-height: 100px;
+  resize: none;
+  
+  
+}
+
+/* BOTON */
+.form-confirmacion button {
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 25px;
+  background: #681515;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.form-confirmacion button:hover {
+  transform: scale(1.03);
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+
+  .confirmacion-box {
+    padding: 25px;
+    margin-top: 40px;
+    border-radius: 15px;
+  }
+
+  .titulo-confirmacion img {
+    max-width: 220px;
+  }
+
+  .form-confirmacion {
+    gap: 14px;
+  }
+
+  .form-confirmacion input,
+  .form-confirmacion select,
+  .form-confirmacion textarea {
+    padding: 14px;
+    font-size: 13px;
+  }
+
+  .form-confirmacion textarea {
+    min-height: 80px;
+  }
+
+  .form-confirmacion button {
+    padding: 14px;
+    font-size: 14px;
+  }
+}
+
+
+
+
+.seccion-final {
+  margin-top: 60px;
+  text-align: center;
+}
+
+/* IMAGEN */
+.contenido-final img {
+  max-width: 300px;
+  width: 100%;
+  margin-bottom: 30px;
+}
+
+/* BARRA ROJA */
+.barra-final {
+  background: #681515;
+  padding: 18px 10px;
+}
+
+.barra-final p {
+  color: white;
+  font-size: 14px;
+  margin: 0;
+  text-align: center
+}
+
+.logo-final-animado{
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+
+.logo-final-animado.visible{
+  opacity: 1;
+}
+
+
+
+
+
+
+
+
+#btnMusica {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: none;
+  background-color: #681515;
+  color: #fff;
+  font-size: 20px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 999;
+  transition: 0.3s;
+}
+
+#btnMusica:hover {
+  transform: scale(1.1);
+}
+
+
+
+#btnMusica:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.4);
+}
+
+
+.mensaje-exito{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: #ffffff;
+  color: #681515;
+  padding: 30px 40px;
+  border-radius: 20px;
+  font-size: 20px;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.4s ease;
+  z-index: 9999;
+}
+
+.mensaje-exito.mostrar{
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+
+/* 📱 CELULAR */
+@media (max-width:768px){
+
+  .mensaje-exito{
+    width: 85%;
+    max-width: 320px;
+
+    padding: 20px 18px;
+    border-radius: 15px;
+
+    font-size: 20px;
+    line-height: 1.4;
+
+    text-align: center;
+
+    /* mejora visual en móvil */
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+  }
+
+}
+
+
+.item-parqueo{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px; /* espacio entre texto y flecha */
+  margin: 8px 0;
+}
+
+.btn-flecha{
+  background: #681515;
+  color: white;
+  text-decoration: none;
+  width: 22px;
+  height: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 12px;
+  transition: 0.3s ease;
+}
+
+.btn-flecha:hover{
+  transform: scale(1.2);
+  background: #8a2a2a;
+}
+
+</style>
+</head>
+
+<body>
+
+<nav>
+  <a href="#" class="logo">
+    <img src="Imagenes/Letras/Logo.png" alt="V&J Logo">
+  </a>
+
+  <div class="menu-toggle" id="mobile-menu">
+    <span></span><span></span><span></span>
+  </div>
+
+  <ul class="nav-links" id="nav-list">
+    <li><a href="https://maps.app.goo.gl/4oQktLAdKmcPW6sr8" target="_blank">Lugar Ceremonia</a></li>
+    <li><a href="https://maps.app.goo.gl/5ZczkdazqgPxuhCHA" target="_blank">Recepción</a></li>
+    <li><a href="http://www.wedshoots.com/download?albumId=ESdffe6fab">Albums Fotos</a></li>
+    <li><a href="#Confirmacion">Confirmación</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  
+  <div class="pol-group-top">
+    <div class="polaroid pol-3"><img src="Fotos/5.png" alt=""></div>
+    <div class="polaroid pol-4"><img src="Fotos/2.png" alt=""></div>
+  </div>
+
+  <div class="hero-center">
+    <p class="subtitle">¡Nos vamos a casar!</p>
+    <div class="names">
+      <img src="Imagenes/Letras/Titulo.png" alt="Valeria & Jairo">
+    </div>
+    <p class="description">
+      Tu presencia hará aún más especial el día<br>
+      en que unimos nuestros caminos.
+    </p>
+    <img src="Imagenes/Decoracion/Brindis.png" class="deco-cheers" alt="Brindis">
+  </div>
+
+  <div class="pol-group-bottom">
+    <div class="polaroid pol-1"><img src="Fotos/3.png" alt=""></div>
+    <div class="polaroid pol-2"><img src="Fotos/4.png" alt=""></div>
+  </div>
+
+  <img src="Imagenes/Decoracion/Corazon1.png" class="deco-img deco-heart-1" alt="">
+  <img src="Imagenes/Decoracion/Corazon2.png" class="deco-img deco-heart-2" alt="">
+  <img src="Imagenes/Decoracion/Corazon3.png" class="deco-img deco-heart-triple" alt="">
+  <img src="Imagenes/Decoracion/Linea-Photoroom.png" class="deco-img swirl-tl" alt="">
+  <img src="Imagenes/Decoracion/Linea-Photoroom.png" class="deco-img swirl-br" alt="">
+
+
+  
+</section>
+
+<section class="cinta-galeria">
+
+  <div class="cinta">
+    <!-- BLOQUE ORIGINAL (6 imágenes) -->
+    <img src="Fotos/Gallery1.png">
+    <img src="Fotos/Gallery2.png">
+    <img src="Fotos/Gallery4.png">
+    <img src="Fotos/Gallery3.png">
+    <img src="Fotos/Gallery51.jpeg">
+    <img src="Fotos/Gallery6.png">
+
+    <!-- DUPLICADO EXACTO -->
+    <img src="Fotos/Gallery1.png">
+    <img src="Fotos/Gallery2.png">
+    <img src="Fotos/Gallery4.png">
+    <img src="Fotos/Gallery3.png">
+    <img src="Fotos/Gallery51.jpeg">
+    <img src="Fotos/Gallery6.png">
+  </div>
+
+  <div class="logo-centro">
+    <img src="Imagenes/Decoracion/Logo1.png">
+  </div>
+
+</section>
+
+
+
+
+<section class="seccion-floral">
+  <div class="contenido-floral">
+    
+ <img src="Imagenes/Letras/Titulo.png" class="img-top aparecer-scroll" alt="Valeria y Jairo">
+
+<h2 class="titulo-rojo aparecer-scroll">
+QUEREMOS INVITARTE AL DÍA MÁS IMPORTANTE DE NUESTRAS VIDAS
+</h2>
+
+<img src="Imagenes/Decoracion/Icono.svg" class="img-pequena aparecer-scroll" alt="Decoración">
+
+<img src="Imagenes/Decoracion/Buzon_fecha1.png" class="img-grande aparecer-scroll" alt="20 de Junio">
+
+    <div class="contenedor-mapas">
+      
+      <div class="bloque-evento scroll-izq"> 
+  <img src="Imagenes/Decoracion/CEREMONIA.svg" class="img-dibujo" alt="Iglesia">
+  <h3 class="subtitulo-evento">CEREMONIA</h3>
+  <p class="nombre-lugar">Iglesia San Francisco</p>
+  <p class="direccion-texto">Av. 9 de octubre y Pedro Carbo </p>
+    <p class="direccion-texto">Horario:18:30</p>
+
+  <a href="https://maps.app.goo.gl/4oQktLAdKmcPW6sr8" target="_blank" class="btn-mapa">Abrir mapa</a>
+</div>
+
+<div class="bloque-evento scroll-der">
+  <img src="Imagenes/Decoracion/RECEPCIÓN.svg" class="img-dibujo img-recepcion" alt="Casona">
+  <h3 class="subtitulo-evento">RECEPCIÓN</h3>
+  <p class="nombre-lugar">Honorable Cuerpo Consular de Guayaquil</p>
+  <p class="direccion-texto">Kennedy Norte Calle A entre B y C detras del World Trade Center </p>
+   <p class="direccion-texto"> Horario: 19:30</p>
+  <a href="https://maps.app.goo.gl/5ZczkdazqgPxuhCHA" class="btn-mapa" target="_blank">Abrir mapa</a>
+</div>
+
+    </div> 
+
+    
+  </div> 
+
+</section>
+
+
+
+
+<section class="seccion-video-regresiva">
+
+    <div class="barra-video-central">
+
+        <video autoplay loop muted playsinline class="video-regresiva">
+            <source src="Imagenes/Decoracion/video2.mp4" type="video/mp4">
+        </video>
+
+        <div class="capa-panel-blanco">
+
+            <img src="Imagenes/Decoracion/Panel.png" class="img-marco-curvo">
+
+            <div class="contenido-interno-regresiva">
+
+                <img src="Imagenes/Decoracion/Cuenta.svg" class="txt-script">
+
+                <div class="reloj-dinamico">
+
+                    <div class="bloque">
+                        <span id="dias" class="num">000</span>
+                        <span class="lab">Días</span>
+                    </div>
+
+                    <div class="bloque">
+                        <span id="horas" class="num">00</span>
+                        <span class="lab">Horas</span>
+                    </div>
+
+                    <div class="bloque">
+                        <span id="minutos" class="num">00</span>
+                        <span class="lab">Minutos</span>
+                    </div>
+
+                    <div class="bloque">
+                        <span id="segundos" class="num">00</span>
+                        <span class="lab">Segundos</span>
+                    </div>
+
+                </div>
+
+                <img src="Imagenes/Decoracion/Flor_roja.png" class="img-flores-deco">
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BARRA ROJA -->
+    <div class="barra-roja-bottom">
+
+
+        <!-- HISTORIA -->
+        <section class="seccion-historia">
+
+            <div class="contenedor-historia">
+
+                <div class="lado-foto">
+                    <img src="Imagenes/Decoracion/Foto_VJ1.png" class="foto-polaroid foto-entrada-izquierda">
+                </div>
+
+                <div class="lado-texto">
+
+                    <img src="Imagenes/Decoracion/Nuestra_Historia.svg" class="titulo-historia">
+
+                    <p class="texto-historia">
+                  Nos conocimos lejos de casa, en un país distinto, sin imaginar que el destino nos uniría. Lo que empezó como una coincidencia se convirtió en una historia de amor, complicidad y sueños compartidos durante estos 9 años.
+
+De ese amor nació nuestra mayor bendición, nuestra pequeña Valentina, quien ilumina nuestras vidas. Hoy, con el corazón lleno de ilusión, hemos decidido dar el siguiente paso y unir nuestras vidas ante Dios.
+
+Los invitamos a acompañarnos en este momento tan especial y a ser parte de un nuevo capítulo de nuestra historia...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- TARJETAS -->
+        <div class="contenedor-opciones-boda">
+
+            <!-- Dress Code -->
+            <div class="card-boda fade-up">
+                <img src="Imagenes/Decoracion/Marco.png" class="marco-card">
+                
+                <div class="contenido-card">
+                      <div class="icono-container">
+                   <img src="Imagenes/Decoracion/Traje.svg" class="icono-card-Traje">
+                       </div> 
+                    <h3>DRESS CODE</h3>
+
+                    <p>
+                   Te sugerimos optar por tonos elegantes y vestimenta formal. Puedes guiarte por nuestra paleta de colores para una celebración armoniosa y especial.
+                    </p>
+
+                    <a href="https://i.pinimg.com/736x/aa/4e/11/aa4e110768b0a3fc4fef06cc11b37607.jpg" target="_blank" class="boton-card">Guía de colores</a>
+                </div>
+            </div>
+
+
+            <!-- Playlist -->
+            <div class="card-boda fade-up">
+                  
+                <img src="Imagenes/Decoracion/Marco.png" class="marco-card">
+             
+
+                <div class="contenido-card">
+                  <div class="icono-container">
+                      <img src="Imagenes/Decoracion/PlayList.svg" class="icono-card-Play"  > 
+                    </div>
+
+                    <h3>PLAYLIST</h3>
+
+                    <p>
+                    Agrega las canciones que no pueden faltar
+                    en la fiesta en nuestra Playlist colaborativa
+                    que compartiremos con el DJ.
+                    </p>
+
+                    <a href="https://open.spotify.com/playlist/7a7yaG6ApMZL0KFAgaisWY?si=bv5Q8kYvQsOH827GpFGgqw&pt=c9a712d0299cd0ec85d31f95c16f71e1&pi=0_zVE06BSBGxD" target="_blank" class="boton-card">Ir a Playlist</a>
+                </div>
+            </div>
+
+
+            <!-- Album -->
+            <div class="card-boda fade-up">
+                <img src="Imagenes/Decoracion/Marco.png" class="marco-card">
+
+                <div class="contenido-card">
+                      <div class="icono-container">
+                    <img src="Imagenes/Decoracion/Album_Fotos.svg" class="icono-card-Album">
+                  </div>
+
+                    <h3>ALBÚM FOTOS</h3>
+
+                    <p>
+                    Sube y comparte tus registros de fotos
+                    y videos del día de la boda en nuestro
+                    álbum colaborativo.
+                    </p>
+                     
+                    <a href="http://www.wedshoots.com/download?albumId=ESdffe6fab"  target="_blank" class="boton-card">Ir al álbum</a>
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+        
+<section class="seccion-cronograma">
+
+    <img src="Imagenes/Decoracion/Imagen_decoracion.svg" class="Imagen-decoracion">
+
+
+    <img src="Imagenes/Decoracion/Imagen_Titulo.svg" class="Imagen-Titulo">
+
+
+    <!-- imagen para computadora -->
+    <img src="Imagenes/Decoracion/4.png" class="cronograma-desktop">
+
+    <!-- imagen para celular -->
+    <img src="Imagenes/Decoracion/2.png" class="cronograma-mobile">
+
+</section>
+        
+        
+    </div>
+
+</section>
+
+
+
+
+
+
+
+<section class="galeria-polar">
+  <div class="polar-overflow">
+    <div class="polar-track" id="polarTrack">
+
+      <div class="polar-card"><img src="Fotos/Cinta1.png"></div>
+      <div class="polar-card"><img src="Fotos/Cinta2.png"></div>
+      <div class="polar-card"><img src="Fotos/Gallery2.png"></div>
+      <div class="polar-card"><img src="Fotos/Gallery3.png"></div>
+
+    </div>
+  </div>
+
+
+
+  
+</section>
+
+<section class="seccion-floral2">
+  <div class="contenido-floral">
+
+    <!-- TITULO -->
+    <div class="titulo-info">
+      <img src="Imagenes/Decoracion/Informacion_Importante.svg" alt="">
+    </div>
+
+    <!-- ITEM -->
+    <div class="item-info">
+      <div class="titulo-item" onclick="toggleInfo(this)">
+        <img src="Imagenes/Decoracion/Icono.svg" class="icono">
+        <span><strong>RECOMENDACIÓN PARQUEO PARA CEREMONIA</strong><br><small>(Haz clic para ver más)</small>
+        
+      </div>
+     <div class="contenido-item">
+  <p>Aquí puedes encontrar parqueos recomendados:</p>
+
+  <p class="item-parqueo">
+    Ubapark: Pichincha y Luque
+    <a href="https://maps.app.goo.gl/ZApLKZXYB3vQBKb7A" target="_blank" class="btn-flecha">➜</a>
+  </p>
+
+<br>
+  <p class="item-parqueo">
+    Malecón y Fco. Icaza
+    <a href="https://maps.google.com/?q=Malecon+y+Francisco+Icaza+Guayaquil" target="_blank" class="btn-flecha">➜</a>
+  </p>
+  <br>
+  <p class="item-parqueo">
+    San Francisco Parqueo Privado
+    <a href="https://maps.app.goo.gl/wNjGN7SU7wpQMbBp6" target="_blank" class="btn-flecha">➜</a>
+  </p>
+</div>
+    </div>
+
+    <div class="item-info">
+      <div class="titulo-item" onclick="toggleInfo(this)">
+        <img src="Imagenes/Decoracion/Icono.svg" class="icono">
+        <span><strong>¿PUEDEN IR NIÑOS?</strong><br><small>(Haz clic para ver más)</small>
+      </div>
+      <div class="contenido-item">
+        Nos gustan tanto los niños, que no queremos que se desvelen ni que pasen frío en este evento.
+        <p>Por tal motivo hemos reservado esta ocasión como una celebración para adultos.</p>
+      </div>
+    </div>
+
+    <div class="item-info">
+      <div class="titulo-item" onclick="toggleInfo(this)">
+        <img src="Imagenes/Decoracion/Icono.svg" class="icono">
+        <span><strong>INFORMACIÒN SOBRE OBSEQUIO</strong><br><small>(Haz clic para ver más)</small>
+      </div>
+      <div class="contenido-item">
+        Su presencia es nuestro mejor regalo; sin embargo, agradecemos sus muestras de cariño en sobre cerrado el día de la ceremonia.
+      </div>
+    </div>
+
+
+
+
+<!-- CONFIRMACION DE ASISTENCIA -->
+<div id="Confirmacion"class="confirmacion-box">
+
+  <!-- TITULO -->
+  <div class="titulo-confirmacion">
+    <img src="Imagenes/Decoracion/Confirmacion.svg" alt="">
+  </div>
+
+<form class="form-confirmacion" id="formConfirmacion">
+
+  <label>Nombre Invitado principal *</label>
+  <input type="text" name="nombre" placeholder="Nombre" required>
+
+  <label>Nombre Acompañante/s (solo completar si fuiste invitado con acompañante)</label>
+  <input type="text" name="acompanante" placeholder="Nombre">
+
+  <label>Confirmación asistencia *</label>
+  <select name="asistencia" required>
+    <option value="si">Sí, asistiré</option>
+    <option value="no">No asistiré</option>
+  </select>
+
+  <label>¿Alergías alimenticias o restricciones para el menú?</label>
+  <textarea name="alergias" placeholder="Mensaje"></textarea>
+
+  <label>Mensaje para los novios</label>
+  <textarea name="mensaje" placeholder="Mensaje"></textarea>
+
+  <button type="submit">Enviar confirmación</button>
+
+</form>
+</div>
+
+
+  </div>
+
+<div id="mensajeExito" class="mensaje-exito">
+   ¡Gracias por confirmar!<br>
+  Nos alegra compartir este día contigo 💍
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  <!-- SECCION FINAL -->
+<section class="seccion-final">
+
+  <!-- IMAGEN CENTRAL -->
+  <div class="contenido-final">
+    <img src="Imagenes/Decoracion/logo_rojo1.png" class="logo-final-animado">
+  </div>
+
+
+
+
+
+</section>
+
+</section>
+
+
+  <!-- BARRA ROJA -->
+  <div class="barra-final">
+    <p> Diseño y desarrollo por Max Reyes. Todos los derechos reservados.</p>
+  </div>
+
+
+
+
+
+
+<!-- AUDIO -->
+<audio id="musica" loop>
+  <source src="Musica/Lady Gaga, Bruno Mars - Die With A Smile (Official Music Video).mp3" type="audio/mpeg">
+  Tu navegador no soporta audio.
+</audio>
+
+<!-- BOTÓN FLOTANTE -->
+<button id="btnMusica" onclick="toggleMusica()">
+  ▶
+</button>
+
+<script>
+// ===============================
+// 🎵 MÚSICA
+// ===============================
+const audio = document.getElementById("musica");
+const btnMusica = document.getElementById("btnMusica");
+
+let reproduciendo = false;
+
+function iniciarMusica() {
+  audio.play();
+  btnMusica.innerHTML = "⏸";
+  reproduciendo = true;
+  document.removeEventListener("click", iniciarMusica);
+}
+
+document.addEventListener("click", iniciarMusica);
+
+function toggleMusica() {
+  if (reproduciendo) {
+    audio.pause();
+    btnMusica.innerHTML = "▶";
+  } else {
+    audio.play();
+    btnMusica.innerHTML = "⏸";
+  }
+  reproduciendo = !reproduciendo;
+}
+
+
+// ===============================
+// 📂 ACORDEÓN INFO
+// ===============================
+function toggleInfo(el){
+  const item = el.parentElement;
+
+  document.querySelectorAll(".item-info").forEach(i=>{
+    if(i !== item){
+      i.classList.remove("activo");
+    }
+  });
+
+  item.classList.toggle("activo");
+}
+
+
+// ===============================
+// 📸 GALERÍA INFINITA + TOUCH
+// ===============================
+const track = document.getElementById("polarTrack");
+
+if(track){
+  track.innerHTML += track.innerHTML;
+
+  let x = 0;
+  let speed = 1.8;
+
+  function animar(){
+    x += speed;
+    track.style.transform = `translateX(-${x}px)`;
+
+    if(x >= track.scrollWidth / 2){
+      x = 0;
+    }
+
+    requestAnimationFrame(animar);
+  }
+
+  animar();
+
+  // TOUCH
+  let startX = 0;
+  let isDown = false;
+
+  track.addEventListener("touchstart", (e) => {
+    isDown = true;
+    startX = e.touches[0].clientX;
+  });
+
+  track.addEventListener("touchmove", (e) => {
+    if(!isDown) return;
+    let moveX = e.touches[0].clientX;
+    let diff = startX - moveX;
+
+    x += diff * 0.1;
+    startX = moveX;
+  });
+
+  track.addEventListener("touchend", () => {
+    isDown = false;
+  });
+}
+
+
+// ===============================
+// 📱 MENÚ MOBILE
+// ===============================
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+menuToggle.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+  menuToggle.classList.toggle("open");
+});
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+    menuToggle.classList.remove("open");
+  });
+});
+
+
+// ===============================
+// ✨ ANIMACIONES SCROLL (TODO AQUÍ)
+// ===============================
+const elementos = document.querySelectorAll(
+  '.aparecer-scroll, .scroll-izq, .scroll-der, .fade-up, .fade-left, .fade-right, .zoom-in, .foto-entrada-izquierda, .card-boda, .logo-final-animado'
+);
+
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+
+      // activar animación base
+      entry.target.classList.add('visible');
+
+      // 🎴 TARJETAS → activar icono campana
+      if(entry.target.classList.contains('card-boda')){
+        const icono = entry.target.querySelector('.icono-container');
+        if(icono){
+          icono.classList.add('animar');
+        }
+      }
+
+      // solo una vez
+      observer.unobserve(entry.target);
+    }
+  });
+},{
+  threshold: 0.2
+});
+
+elementos.forEach(el=>{
+  observer.observe(el);
+});
+
+
+// ===============================
+// ⏳ CUENTA REGRESIVA
+// ===============================
+const countdownDate = new Date("2026-06-20T18:30:00-05:00").getTime();
+
+const updateTimer = setInterval(function() {
+  const now = new Date().getTime();
+  const distance = countdownDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  document.getElementById("dias").innerText = String(days).padStart(3, '0');
+  document.getElementById("horas").innerText = String(hours).padStart(2, '0');
+  document.getElementById("minutos").innerText = String(minutes).padStart(2, '0');
+  document.getElementById("segundos").innerText = String(seconds).padStart(2, '0');
+
+  if (distance < 0) {
+    clearInterval(updateTimer);
+    document.querySelector(".reloj-dinamico").innerHTML = "<h1>¡ES HOY!</h1>";
+  }
+}, 1000);
+  
+</script>
+<script>
+// ===============================
+// 📩 FORMULARIO CONFIRMACIÓN
+// ===============================
+
+const form = document.getElementById("formConfirmacion");
+const btnEnviar = form.querySelector("button");
+const mensajeExito = document.getElementById("mensajeExito");
+
+let enviando = false;
+
+form.addEventListener("submit", function(e){
+  e.preventDefault();
+
+  // evitar doble envío
+  if(enviando) return;
+  enviando = true;
+
+  // estado botón
+  btnEnviar.disabled = true;
+  btnEnviar.innerText = "Enviando...";
+
+  // datos del formulario
+  const data = {
+    nombre: form.nombre.value,
+    acompanante: form.acompanante.value,
+    asistencia: form.asistencia.value,
+    alergias: form.alergias.value,
+    mensaje: form.mensaje.value
+  };
+
+  // limpiar formulario inmediatamente
+  form.reset();
+
+  // enviar a Google Sheets
+  fetch("https://script.google.com/macros/s/AKfycbyC8A0uFtIP79Mi16guvyV2VHCWxtFUKlxJv0090Tp0qNU59u1cpq-eGMFrZzZw8hUIRg/exec", {
+    method: "POST",
+    body: JSON.stringify(data)
+  })
+
+  // ===============================
+  // ✅ ÉXITO
+  // ===============================
+  .then(() => {
+    btnEnviar.innerText = "✔ Confirmado";
+
+    // mostrar mensaje bonito
+    mensajeExito.classList.add("mostrar");
+
+    // ocultar después
+    setTimeout(() => {
+      mensajeExito.classList.remove("mostrar");
+      btnEnviar.innerText = "Enviar confirmación";
+      btnEnviar.disabled = false;
+      enviando = false;
+    }, 3500);
+  })
+
+  // ===============================
+  // ❌ ERROR
+  // ===============================
+  .catch(() => {
+    btnEnviar.innerText = "Error ❌";
+    btnEnviar.disabled = false;
+    enviando = false;
+  });
+});
+</script>
+
+</body>
+</html>
